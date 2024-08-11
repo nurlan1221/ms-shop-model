@@ -3,6 +3,7 @@ package az.orient.msshopmodel.controller;
 import az.orient.msshopmodel.dto.ReqModel;
 import az.orient.msshopmodel.dto.RespModel;
 import az.orient.msshopmodel.service.ModelService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +18,7 @@ public class ModelController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public RespModel createModel(ReqModel reqModel) {
+    public RespModel createModel(@Valid ReqModel reqModel) {
         return modelService.createModel(reqModel);
     }
 
@@ -37,8 +38,8 @@ public class ModelController {
     }
 
     @PutMapping(path = "{id}")
-    public RespModel updateModelById(@PathVariable Long id, @RequestBody ReqModel reqModel) {
-        return modelService.updateModelById(id,reqModel);
+    public RespModel updateModelById(@PathVariable Long id, @RequestBody @Valid ReqModel reqModel) {
+        return modelService.updateModelById(id, reqModel);
     }
 
 }
