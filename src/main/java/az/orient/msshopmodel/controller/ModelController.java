@@ -18,7 +18,7 @@ public class ModelController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public RespModel createModel(@Valid ReqModel reqModel) {
+    public RespModel createModel(@Valid @RequestBody ReqModel reqModel) {
         return modelService.createModel(reqModel);
     }
 
