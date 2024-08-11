@@ -24,6 +24,7 @@ public class ModelEntity {
     private Long id;
     private String name;
     private String description;
+    private Long brandId;
     @CreationTimestamp
     private Date createdAt;
     @UpdateTimestamp
