@@ -38,7 +38,7 @@ public class ModelService {
     }
 
     public void deleteModelById(Long id) {
-        ModelEntity modelEntity = modelRepository.findById(id).orElseThrow(() -> new ModelNotFoundException("Model not found with id:" + id));
+        ModelEntity modelEntity = modelRepository.findByIdAndStatus(id,Status.ACTIVE).orElseThrow(() -> new ModelNotFoundException("Model not found with id:" + id));
         modelEntity.setStatus(Status.DELETED);
         modelRepository.save(modelEntity);
     }
