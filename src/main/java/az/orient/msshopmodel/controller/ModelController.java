@@ -1,11 +1,13 @@
 package az.orient.msshopmodel.controller;
 
+import az.orient.msshopmodel.dto.ModelWithBrandDto;
 import az.orient.msshopmodel.dto.ReqModel;
 import az.orient.msshopmodel.dto.RespModel;
 import az.orient.msshopmodel.service.ModelService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,6 +22,13 @@ public class ModelController {
     @ResponseStatus(HttpStatus.CREATED)
     public RespModel createModel(@Valid @RequestBody ReqModel reqModel) {
         return modelService.createModel(reqModel);
+    }
+
+    @GetMapping("/by-brand/{brandId}")
+    public List<ModelWithBrandDto> getModelsByBrandId(@PathVariable Long brandId) {
+//        List<ModelWithBrandDto> modelsWithBrand = modelService.getModelsByBrandId(brandId);
+//        return ResponseEntity.ok(modelsWithBrand);
+        return modelService.getModelsByBrandId(brandId);
     }
 
     @GetMapping
