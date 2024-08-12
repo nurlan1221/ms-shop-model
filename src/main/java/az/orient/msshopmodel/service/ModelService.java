@@ -31,17 +31,16 @@ public class ModelService {
     public List<ModelWithBrandDto> getModelsByBrandId(Long brandId) {
         // Fetch models associated with the given brandId
         List<ModelEntity> models = modelRepository.findByBrandId(brandId);
-
         // Fetch brand information using BrandServiceClient
-        BrandDto brandDto = brandServiceClient.getBrandById(brandId);
+        ModelWithBrandDto brandDto = brandServiceClient.getBrandById(brandId);
 
         // Combine ModelEntity and BrandDto into ModelWithBrandDto
         return models.stream().map(model -> ModelWithBrandDto.builder()
                         .modelId(model.getId())
                         .modelName(model.getName())
                         .modelDescription(model.getDescription())
-                        .brandName(brandDto.getName())
-                        .brandDescription(brandDto.getDescription())
+                        .name(brandDto.getName())
+                        .description(brandDto.getDescription())
                         .build())
                 .collect(Collectors.toList());
     }

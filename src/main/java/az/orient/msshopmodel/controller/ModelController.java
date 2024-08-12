@@ -26,8 +26,6 @@ public class ModelController {
 
     @GetMapping("/by-brand/{brandId}")
     public List<ModelWithBrandDto> getModelsByBrandId(@PathVariable Long brandId) {
-//        List<ModelWithBrandDto> modelsWithBrand = modelService.getModelsByBrandId(brandId);
-//        return ResponseEntity.ok(modelsWithBrand);
         return modelService.getModelsByBrandId(brandId);
     }
 
